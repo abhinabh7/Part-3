@@ -61,20 +61,18 @@
             </div>
             <div class="action-buttons">
                 <a href="cart.html" aria-label="Add to Cart">
-                <button class="add-to-cart">Add to Cart</button>
+                    <button class="add-to-cart">Add to Cart</button>
                 </a>
                 <a href="checkout.html" aria-label="Buy Now">
-                <button class="buy-now">Buy Now</button>
+                    <button class="buy-now">Buy Now</button>
                 </a>
             </div>
         </div>
     </section>
 
     <footer>
-        <!-- Top Section: Logo and Social Icons -->
         <div class="top-section">
             <div class="footer-logo">
-                <!-- Add your logo image here -->
                 <img src="image/Matra.png" alt="Logo">
             </div>
             <div class="social-icons">
@@ -83,21 +81,14 @@
                 <a href="#" target="_blank" aria-label="Instagram"><i class="bx bxl-instagram"></i></a>
             </div>
         </div>
-    
-        <!-- Horizontal Line -->
         <hr class="horizontal-line">
-    
-        <!-- Remaining Footer Sections -->
         <div class="footer-sections">
-            <!-- Contact Us Section -->
             <div class="footer-section">
                 <h3>Contact Us</h3>
                 <p><i class="bx bx-map icon"></i> Golmadhi -07-Bhaktapur, 8848, Nepal</p>
                 <p><i class="bx bx-phone icon"></i> +9779864737132</p>
                 <p><i class="bx bx-envelope icon"></i> matradude@gmail.com</p>
             </div>
-    
-            <!-- My Account Section -->
             <div class="footer-section">
                 <h3>My Account</h3>
                 <a href="customer_dashboard.html">My Account</a>
@@ -105,8 +96,6 @@
                 <a href="blog.html">Blog</a>
                 <a href="prodcut.html">Bestsellers Products</a>
             </div>
-    
-            <!-- Opening Time Section -->
             <div class="footer-section">
                 <h3>Opening Time</h3>
                 <p>Sun - Tue: 9AM - 9PM</p>
@@ -116,13 +105,31 @@
             </div>
         </div>
     </footer>
-    
-    <!-- Footer Bottom Section -->
     <div class="footer-bottom">
         <p>© 2024 Matradude. All Rights Reserved</p>
     </div>
 
-    <script src="script/product_details.js"></script>
+    <script>
+        // JavaScript for changing main image
+        function changeImage(imageUrl) {
+            document.getElementById('mainImage').src = imageUrl;
+        }
+
+        // JavaScript for quantity adjustment
+        function increaseQuantity() {
+            const quantityInput = document.getElementById('quantity');
+            let currentValue = parseInt(quantityInput.value);
+            quantityInput.value = currentValue + 1;
+        }
+
+        function decreaseQuantity() {
+            const quantityInput = document.getElementById('quantity');
+            let currentValue = parseInt(quantityInput.value);
+            if (currentValue > 1) {
+                quantityInput.value = currentValue - 1;
+            }
+        }
+    </script>
 </body>
 
 </html>
