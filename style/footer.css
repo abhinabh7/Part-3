@@ -1,0 +1,126 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    border-bottom: 1px solid #ddd;
+}
+
+header .logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #e3342f;
+}
+
+header nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+header .icons i {
+    margin-left: 15px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Products Section */
+.products {
+    display: flex;
+    justify-content: space-around;
+    padding: 30px 50px;
+}
+
+.product-card {
+    text-align: center;
+    width: 220px;
+}
+
+.product-card .image-placeholder {
+    width: 100%;
+    height: 150px;
+    background: #f0f0f0;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+}
+
+.product-card .price {
+    color: #e3342f;
+    font-weight: bold;
+}
+
+/* Footer */
+footer {
+    background: #f9f9f9;
+    padding: 40px 50px;
+    text-align: center;
+}
+
+.footer-logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #e3342f;
+    margin-bottom: 20px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.footer-content .column h4 {
+    font-size: 18px;
+    color: #e3342f;
+    margin-bottom: 10px;
+}
+
+.footer-content .column p {
+    margin: 5px 0;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Footer Social Icons and Logo */
+.footer-social {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 10px;
+}
+
+.footer-social .social-icons i {
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+}
+
+.footer-social .footer-logo-small {
+    font-size: 20px;
+    font-weight: bold;
+    color: #e3342f;
+}
+
+.footer-bottom {
+    color: #777;
+    font-size: 14px;
+}
