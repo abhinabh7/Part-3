@@ -1,18 +1,15 @@
 <?php
-require_once "connection.php";  
-$name = "";
-$email = "";
-$phone = "";
-$address = "";
-
-$errorMessage = "";
-$successMessage = "";
+require_once "connection.php"; // Include the connection file
+$name = $email = $phone = $address = ""; // Initialize variables
+$errorMessage = $successMessage = ""; // Initialize messages
 
 // Get customer ID from query parameter
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
 if ($id > 0) {
+    // Fetch the existing customer data from the database
     $result = $mysqli->query("SELECT * FROM clients WHERE id=$id");
+
     if ($result && $result->num_rows > 0) {
         $row = $result->fetch_assoc();
         $name = $row['name'];
@@ -25,42 +22,32 @@ if ($id > 0) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Get the submitted form data
     $name = mysqli_real_escape_string($mysqli, $_POST["name"]);
     $phone = mysqli_real_escape_string($mysqli, $_POST["phone"]);
     $address = mysqli_real_escape_string($mysqli, $_POST["address"]);
 
     // Validate inputs
-    do {
-        if (empty($name) || empty($phone) || empty($address)) {
-            $errorMessage = "All fields are required.";
-            break;
-        }
-
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $errorMessage = "Invalid email format.";
-            break;
-        }
-
-        if (!is_numeric($phone)) {
-            $errorMessage = "Phone number should be numeric.";
-            break;
-        }
-
-        // Update query
-        $sql = "UPDATE clients SET name='$name', email='$email', phone='$phone', address='$address' WHERE id=$id";
+    if (empty($name) || empty($phone) || empty($address)) {
+        $errorMessage = "All fields are required.";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errorMessage = "Invalid email format.";
+    } elseif (!is_numeric($phone)) {
+        $errorMessage = "Phone number should be numeric.";
+    } else {
+        // Update the customer details in the database
+        $sql = "UPDATE clients SET name='$name', phone='$phone', address='$address' WHERE id=$id";
         $result = $mysqli->query($sql);
 
         if (!$result) {
             $errorMessage = "Error: " . $mysqli->error;
-            break;
+        } else {
+            $successMessage = "Customer details updated successfully.";
+            // Redirect to the admin dashboard
+            header("Location: ./admin_dashboard.php");
+            exit;
         }
-
-        $successMessage = "Customer details updated successfully.";
-
-        // Redirect to admin dashboard
-        header("Location: ./admin_dashboard.php");
-        exit;
-    } while (false);
+    }
 }
 
 // Close the database connection
@@ -74,7 +61,7 @@ $mysqli->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Customer</title>
     <style>
-           body {
+        body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
@@ -162,7 +149,7 @@ $mysqli->close();
         <form method="post">
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" name="name" value="<?php echo htmlspecialchars($name); ?>">
+                <input type="text" name="name" value="<?php echo htmlspecialchars($name); ?>" required>
             </div>
 
             <div class="form-group">
@@ -172,12 +159,12 @@ $mysqli->close();
 
             <div class="form-group">
                 <label for="phone">Phone</label>
-                <input type="text" name="phone" value="<?php echo htmlspecialchars($phone); ?>">
+                <input type="text" name="phone" value="<?php echo htmlspecialchars($phone); ?>" required>
             </div>
 
             <div class="form-group">
                 <label for="address">Address</label>
-                <input type="text" name="address" value="<?php echo htmlspecialchars($address); ?>">
+                <input type="text" name="address" value="<?php echo htmlspecialchars($address); ?>" required>
             </div>
 
             <button type="submit" class="login-btn">Update</button>
